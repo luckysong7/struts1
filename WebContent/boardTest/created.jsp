@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>게 시 판(Struts1)</title>
+<title>게 시 판(ibatis)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 <link rel="stylesheet" href="<%=cp%>/board/css/style.css" type="text/css"/>
@@ -72,7 +72,7 @@
         }
     	f.pwd.value = str;
     	
-        f.action = "<%=cp%>/board.do";
+        f.action = "<%=cp%>/boardTest.do";
         f.submit();
     }
 
@@ -84,7 +84,7 @@
 
 <div id="bbs">
 	<div id="bbs_title">
-	게 시 판(Struts1)
+	게 시 판(ibatis)
 	</div>
 
 	<form name="myForm" method="post" action="">
@@ -136,13 +136,14 @@
 	</div>
 
 	<div id="bbsCreated_footer">
-		<input type="hidden" name="method" value ="write_ok"/>
+		<input type ="hidden" name ="method" value="created_ok"> 
         <input type="button" value=" 등록하기 " class="btn2" 
-        onclick="sendIt()"/>
+        onclick="sendIt();"/>
+
         <input type="reset" value=" 다시입력 " class="btn2" 
         onclick="document.myForm.subject.focus();"/>
         <input type="button" value=" 작성취소 " class="btn2" 
-        onclick="javascript:location.href='<%=cp%>/board.do?method=list&${params }'"/>
+        onclick="javascript:location.href='<%=cp%>/boardTest.do?method=list';"/>
 	</div>
 
     </form>

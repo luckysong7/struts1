@@ -21,6 +21,18 @@ public class BoardAction extends DispatchAction {
 
 	public ActionForward write(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String pageNum = request.getParameter("pageNum");
+		
+		String searchKey = request.getParameter("searchKey");
+		String searchValue = request.getParameter("searchValue");
+		
+		String param = "pageNum="+pageNum;
+		if(searchKey != null){
+			param += "&searchKey=" + searchKey;
+			param += "&searchValue=" + URLEncoder.encode(searchValue, "UTF-8"); 
+		}
+		
+		request.setAttribute("params", param);
 		
 		return mapping.findForward("created");
 	
@@ -111,6 +123,8 @@ public class BoardAction extends DispatchAction {
 				myUtil.pageIndexList(currentPage, totalPage, urlList));
 		request.setAttribute("totalPage", totalPage);
 		request.setAttribute("totalDataCount", totalDataCount);
+		request.setAttribute("params", param);
+		request.setAttribute("currentPage", currentPage);
 		
 		return mapping.findForward("list");
 	
@@ -222,17 +236,9 @@ public class BoardAction extends DispatchAction {
 		String pageNum = request.getParameter("pageNum");
 		String searchKey = request.getParameter("searchKey");
 		String searchValue = request.getParameter("searchValue");
-		
-		BoardForm dto = new BoardForm();
-		
-		dto.setNum(Integer.parseInt(request.getParameter("num")));
-		dto.setSubject(request.getParameter("subject"));
-		dto.setName(request.getParameter("name"));
-		dto.setEmail(request.getParameter("email"));
-		dto.setContent(request.getParameter("content"));
-		dto.setPwd(request.getParameter("pwd"));
-					
-		dao.updateData(dto);
+		BoardForm f = (BoardForm)form; // 다운캐스팅
+
+		dao.updateData(f);
 		
 		String params = "&pageNum="+pageNum;
 		
@@ -245,9 +251,14 @@ public class BoardAction extends DispatchAction {
 		
 		urlList = cp+"/board.do?method=list&"+params;
 	
-		ActionRedirect redirect = new ActionRedirect(mapping.findForward("update_ok"));
-		redirect.addParameter("params",params);
-		return redirect;
+//		ActionRedirect redirect = new ActionRedirect(mapping.findForward("update_ok"));
+//		redirect.addParameter("params",params);
+//		return redirect;
+		
+		ActionForward af = new ActionForward();
+		af.setRedirect(true);
+		af.setPath("/board.do?method=list"+params);
+		return af;
 	}
 	
 	public ActionForward delete_ok(ActionMapping mapping, ActionForm form,
@@ -263,9 +274,19 @@ public class BoardAction extends DispatchAction {
 		String searchKey = request.getParameter("searchKey");
 		String searchValue = request.getParameter("searchValue");
 		
+		String params = "&pageNum="+pageNum;
+		
+		if(searchKey != null){
+			params += "&searchKey=" + searchKey;
+			params += "&searchValue=" + URLEncoder.encode(searchValue, "UTF-8"); 
+		}
 		
 		dao.deleteData(num);
 		
-		return mapping.findForward("delete");
+//		return mapping.findForward("delete");
+		ActionForward af = new ActionForward();
+		af.setRedirect(true);
+		af.setPath("/board.do?method=list"+params);
+		return af;
 	}
 }

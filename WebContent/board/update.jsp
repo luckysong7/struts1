@@ -97,9 +97,9 @@
 	<div id="bbsCreated_footer">
 		<input type="hidden" name ="num" value ="${dto.num }" />
 		<input type ="hidden" name ="pageNum" value ="${pageNum }" />
-		<input type="hidden" name ="searchKey" value ="${searchKey }" />
-		<input type="hidden" name ="searchValue" value ="${searchValue }" />	
-			
+<%-- 		<input type="hidden" name ="searchKey" value ="${searchKey }" /> --%>
+<%-- 		<input type="hidden" name ="searchValue" value ="${searchValue }" />	 --%>
+		<input type="hidden" name ="params" value = "${params }">
         <input type="button" value=" 수정하기 " class="btn2" onclick="sendIt();"/>
        
         <input type="button" value=" 수정취소 " class="btn2" onclick="javascript:location.href='<%=cp%>/board.do?method=list&${params }';"/>

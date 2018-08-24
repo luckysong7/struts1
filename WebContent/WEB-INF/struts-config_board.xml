@@ -19,11 +19,12 @@
 			path="/board.do?method=list"/>
 			<forward name="list" path="/board/list.jsp"></forward>
 			<forward name="article" path="/board/article.jsp"></forward>
-			<forward name="delete" redirect="true"
-			path="/board.do?method=list"></forward>
 			<forward name="update" path="/board/update.jsp"></forward>
-			<forward name="update_ok" redirect="true"
-			path="/board.do?method=list"/>
+<!-- 			<forward name="delete" redirect="true" -->
+<!-- 			path="/board.do?method=list"></forward> -->
+<!-- 			<forward name="update_ok" redirect="true" -->
+<!-- 			path="/board.do?method=list"/> -->
+			
 		</action>
     </action-mappings>
 </struts-config>
