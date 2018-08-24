@@ -52,14 +52,16 @@
 		<div class="bbsArticle_bottomLine">
 			이전글 : 
 			<c:if test="${!empty preUrl }">
-			<a href="${preUrl }">${preSubject }
+			<a href="${preUrl }">
+			${preSubject }
 			</a>			
 			</c:if>
 		</div>
 		<div class="bbsArticle_noLine">
 			다음글 :
 			<c:if test="${!empty nextUrl }">
-			<a href="${nextUrl }">${nextSubject }
+			<a href="${nextUrl }">
+			${nextSubject }
 			</a>			
 			</c:if>
 		</div>

@@ -73,7 +73,7 @@
 				<dd class="num">${dto.num }</dd>
 				
 				<dd class="subject">
-					<a href ="${urlArticle }&num=${dto.num">
+					<a href ="${urlArticle }&num=${dto.num }">
 					${dto.subject }
 					</a>
 				</dd>
